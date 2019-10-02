@@ -55,11 +55,17 @@ for k, v in dateDict.items():
     #See if the date (the value) matches the user date
     if v == userDate:
         keyList.append(k)  
-
+        
+#Report if no keys are found
+if len(keyList)==0:
+    print("No record found for{}".format(userDate))
+    
+    
+else:
 # Show coordinates
-for key in keyList:
-    theCoordinate = locationDict[key]
-    print("Turtle found at {}".format(theCoordinate))
+    for key in keyList:
+        theCoordinate = locationDict[key]
+        print("Turtle found at {}".format(theCoordinate))
     
 
     
