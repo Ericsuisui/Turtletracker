@@ -6,7 +6,6 @@
 # Created by: John Fay (john.fay@duke.edu)
 # Created on: Fall 2019
 #--------------------------------------------------------------
-
 # Create a variable pointing to the file with no header
 fileName = "data/raw/SaraNoHeader.txt"
 
@@ -38,12 +37,29 @@ for lineString in lineStrings:
     obsLC = lineData[3]                 # Observation Location Class
     obsLat = lineData[5]                # Observation Latitude
     obsLon = lineData[6]                # Observation Longitude
-    
-    #filter out records
-    if obsLC in ('1','2','3'):
+
+    #Filter which records are added to the dictionaries
+    if obsLC in ("1","2","3"):
         # Add values to dictionary
-        dateDict[recordID] = obsDateTime   
+        dateDict[recordID] = obsDate  
         locationDict[recordID] = (obsLat, obsLon) 
 
-# Indicate script is complete
-print ("Finished")
+# Ask the user for a date, specifying the format
+userDate = input("Enter a date (M/D/YYYY):")
+
+#Create an empty key list
+keyList = []
+
+# Loop through all key, value pairs in the dateDictionary
+for k, v in dateDict.items():
+    #See if the date (the value) matches the user date
+    if v == userDate:
+        keyList.append(k)  
+
+# Show coordinates
+for key in keyList:
+    theCoordinate = locationDict[key]
+    print("Turtle found at {}".format(theCoordinate))
+    
+
+    
